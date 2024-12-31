@@ -1,0 +1,15 @@
+{
+  "AppVersion": "1.1.0.0",
+  "Title": "Dream Line",
+  "Thumbnail": "lively_t.jpg",
+  "Preview": "lively_p.gif",
+  "Desc": "As the mouse moves on the desktop, it produces fantastic lines, which are very beautiful",
+  "Author": "Coolleget",
+  "License": null,
+  "Contact": "https://www.coolleget.com",
+  "Type": 1,
+  "FileName": "index.html",
+  "Arguments": null,
+  "IsAbsolutePath": false,
+  "IsNeedLicense": false
+}

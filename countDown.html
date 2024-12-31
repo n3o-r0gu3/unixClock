@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body>
+<h1 style="font-size: 54px;">The UNIX Count Down.</h1> 
+<img src="https://images.fineartamerica.com/images/artworkimages/medium/3/bettie-page-and-her-whip-franchi-torres-transparent.png" alt="https://images.fineartamerica.com/images/artworkimages/medium/3/bettie-page-and-her-whip-franchi-torres-transparent.png" class="center">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to Jan 19, 2038</title>
+    
+	<style>
+        body {
+	display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+        }
+        .countdown {
+            text-align: center;
+            font-size: 3em;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+        }
+        .neon {
+            animation: neon 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00, 0 0 70px #00ff00;
+            }
+            to {
+                text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00, 0 0 70px #00ff00, 0 0 80px #00ff00;
+            }
+        }
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: particle 5s linear infinite;
+        }
+        @keyframes particle {
+            from {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh) scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+
+
+    <div class="countdown neon" id="countdown">4772d 23h 16m 26s</div>
+    <div class="particles" id="particles"><div class="particle" style="left: 95.7642vw; animation-duration: 4.61009s;"></div><div class="particle" style="left: 55.6063vw; animation-duration: 5.63158s;"></div><div class="particle" style="left: 55.1595vw; animation-duration: 2.97881s;"></div><div class="particle" style="left: 24.7627vw; animation-duration: 3.65711s;"></div><div class="particle" style="left: 28.3367vw; animation-duration: 5.51387s;"></div><div class="particle" style="left: 64.0159vw; animation-duration: 6.2776s;"></div><div class="particle" style="left: 25.2472vw; animation-duration: 3.9439s;"></div><div class="particle" style="left: 75.541vw; animation-duration: 3.08811s;"></div><div class="particle" style="left: 13.9367vw; animation-duration: 2.04919s;"></div><div class="particle" style="left: 24.1074vw; animation-duration: 6.01385s;"></div><div class="particle" style="left: 82.8223vw; animation-duration: 2.70402s;"></div><div class="particle" style="left: 22.5678vw; animation-duration: 4.14728s;"></div><div class="particle" style="left: 4.98053vw; animation-duration: 4.3647s;"></div><div class="particle" style="left: 15.1777vw; animation-duration: 5.34941s;"></div><div class="particle" style="left: 43.9834vw; animation-duration: 5.32196s;"></div><div class="particle" style="left: 60.7358vw; animation-duration: 5.81286s;"></div><div class="particle" style="left: 50.554vw; animation-duration: 6.50739s;"></div><div class="particle" style="left: 13.6623vw; animation-duration: 5.81427s;"></div></div>
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2038-01-19T00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = "EXPIRED";
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.animationDuration = `${Math.random() * 5 + 2}s`;
+            document.getElementById('particles').appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 7000);
+        }
+
+        setInterval(createParticle, 400);
+    </script>
+
+</body></html>
